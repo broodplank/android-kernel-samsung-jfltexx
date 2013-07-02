@@ -1,0 +1,19 @@
+#!/bin/bash
+clear
+echo " "
+echo "Setting Variables"
+echo " "
+export ARCH=arm
+#export CROSS_COMPILE=arm-eabi-
+#export PATH=$PATH:/media/linux/linarotoolchain/bin/
+export CROSS_COMPILE=/media/linux/arm-eabi-4.6/bin/arm-eabi-
+
+echo " "
+echo "Make kernel..."
+echo " "
+make -j8
+
+echo " "
+echo "Done!"
+echo " "
+
