@@ -153,7 +153,12 @@ struct mem_cgroup_zone {
 /*
  * From 0 .. 100.  Higher means more swappy.
  */
-int vm_swappiness = 60;
+int vm_swappiness = 0;
+/*
+int vm_swapiness = 60; default value, not interesting for our devicve. 
+int vm_swappines = 45; Lower swapiness to common value 
+int vm_swappines = 0; Disable swappiness, since device has 2gb ram why not just disable it at all?
+*/
 long vm_total_pages;	/* The total number of pages which the VM controls */
 
 static LIST_HEAD(shrinker_list);
