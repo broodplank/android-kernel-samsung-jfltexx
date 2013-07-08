@@ -500,10 +500,10 @@ static struct acpu_level tbl_PVS0_2000MHz[] __initdata = {
 };
 
 static struct acpu_level tbl_PVS1_2000MHz[] __initdata = {
-	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   925000 },
-	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   925000 },
-	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   925000 },
-	{ 1, {   378000, PLL_8, 0, 0x00 }, L2(0),   925000 },
+	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   875000 },
+	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   875000 },
+	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   875000 },
+	{ 1, {   378000, PLL_8, 0, 0x00 }, L2(0),   900000 },
 	{ 1, {   486000, HFPLL, 2, 0x24 }, L2(5),   925000 },
 	{ 1, {   594000, HFPLL, 1, 0x16 }, L2(5),   925000 },
 	{ 1, {   702000, HFPLL, 1, 0x1A }, L2(5),   925000 },
@@ -522,9 +522,9 @@ static struct acpu_level tbl_PVS1_2000MHz[] __initdata = {
 };
 
 static struct acpu_level tbl_PVS2_2000MHz[] __initdata = {
-	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   900000 },
-	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   900000 },
-	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   900000 },
+	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   850000 },
+	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   850000 },
+	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   850000 },
 	{ 1, {   378000, PLL_8, 0, 0x00 }, L2(0),   900000 },
 	{ 1, {   486000, HFPLL, 2, 0x24 }, L2(5),   900000 },
 	{ 1, {   594000, HFPLL, 1, 0x16 }, L2(5),   900000 },
@@ -544,9 +544,9 @@ static struct acpu_level tbl_PVS2_2000MHz[] __initdata = {
 };
 
 static struct acpu_level tbl_PVS3_2000MHz[] __initdata = {
-	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   900000 },
-	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   900000 },
-	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   900000 },
+	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   850000 },
+	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   850000 },
+	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   850000 },
 	{ 1, {   378000, PLL_8, 0, 0x00 }, L2(0),   900000 },
 	{ 1, {   486000, HFPLL, 2, 0x24 }, L2(5),   900000 },
 	{ 1, {   594000, HFPLL, 1, 0x16 }, L2(5),   900000 },
@@ -566,9 +566,9 @@ static struct acpu_level tbl_PVS3_2000MHz[] __initdata = {
 };
 
 static struct acpu_level tbl_PVS4_2000MHz[] __initdata = {
-	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   875000 },
-	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   875000 },
-	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   875000 },
+	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   825000 },
+	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   825000 },
+	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   825000 },
 	{ 1, {   378000, PLL_8, 0, 0x00 }, L2(0),   875000 },
 	{ 1, {   486000, HFPLL, 2, 0x24 }, L2(5),   875000 },
 	{ 1, {   594000, HFPLL, 1, 0x16 }, L2(5),   875000 },
@@ -588,9 +588,9 @@ static struct acpu_level tbl_PVS4_2000MHz[] __initdata = {
 };
 
 static struct acpu_level tbl_PVS5_2000MHz[] __initdata = {
-	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   875000 },
-	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   875000 },
-	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   875000 },
+	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   825000 },
+	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   825000 },
+	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   825000 },
 	{ 1, {   378000, PLL_8, 0, 0x00 }, L2(0),   875000 },
 	{ 1, {   486000, HFPLL, 2, 0x24 }, L2(5),   875000 },
 	{ 1, {   594000, HFPLL, 1, 0x16 }, L2(5),   875000 },
@@ -610,9 +610,9 @@ static struct acpu_level tbl_PVS5_2000MHz[] __initdata = {
 };
 
 static struct acpu_level tbl_PVS6_2000MHz[] __initdata = {
-	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   875000 },
-	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   875000 },
-	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   875000 },
+	{ 1, {    81000, HFPLL, 2, 0x06 }, L2(0),   825000 },
+	{ 1, {   135000, HFPLL, 2, 0x0A }, L2(0),   825000 },
+	{ 1, {   189000, HFPLL, 2, 0x0E }, L2(0),   825000 },
 	{ 1, {   378000, PLL_8, 0, 0x00 }, L2(0),   875000 },
 	{ 1, {   486000, HFPLL, 2, 0x24 }, L2(5),   875000 },
 	{ 1, {   594000, HFPLL, 1, 0x16 }, L2(5),   875000 },
@@ -646,12 +646,12 @@ static struct pvs_table pvs_tables[NUM_SPEED_BINS][NUM_PVS] __initdata = {
 	[1][6] = { tbl_PVS6_1700MHz, sizeof(tbl_PVS6_1700MHz),     25000 },
 
 	[2][0] = { tbl_PVS0_2000MHz, sizeof(tbl_PVS0_2000MHz),     0 },
-	[2][1] = { tbl_PVS1_2000MHz, sizeof(tbl_PVS1_2000MHz),     0 },
-	[2][2] = { tbl_PVS2_2000MHz, sizeof(tbl_PVS2_2000MHz),     0 },
-	[2][3] = { tbl_PVS3_2000MHz, sizeof(tbl_PVS3_2000MHz),     0 },
-	[2][4] = { tbl_PVS4_2000MHz, sizeof(tbl_PVS4_2000MHz),     0 },
-	[2][5] = { tbl_PVS5_2000MHz, sizeof(tbl_PVS5_2000MHz),     0 },
-	[2][6] = { tbl_PVS6_2000MHz, sizeof(tbl_PVS6_2000MHz),     0 },
+	[2][1] = { tbl_PVS1_2000MHz, sizeof(tbl_PVS1_2000MHz),     26000 },
+	[2][2] = { tbl_PVS2_2000MHz, sizeof(tbl_PVS2_2000MHz),     26000 },
+	[2][3] = { tbl_PVS3_2000MHz, sizeof(tbl_PVS3_2000MHz),     26000 },
+	[2][4] = { tbl_PVS4_2000MHz, sizeof(tbl_PVS4_2000MHz),     26000 },
+	[2][5] = { tbl_PVS5_2000MHz, sizeof(tbl_PVS5_2000MHz),     26000 },
+	[2][6] = { tbl_PVS6_2000MHz, sizeof(tbl_PVS6_2000MHz),     26000 },
 
 	[14][0] = { tbl_PVS0_1512MHz, sizeof(tbl_PVS0_1512MHz),     0 },
 	[14][1] = { tbl_PVS1_1512MHz, sizeof(tbl_PVS1_1512MHz),     25000 },
