@@ -28,7 +28,7 @@
 #include <asm/page.h>
 #include <mach/msm_dcvs.h>
 #include <trace/events/mpdcvs_trace.h>
-#include <linux/cpufreq.h>
+#include "krait-defines.h"
 
 #define CORE_HANDLE_OFFSET (0xA0)
 #define __err(f, ...) pr_err("MSM_DCVS: %s: " f, __func__, __VA_ARGS__)
@@ -997,11 +997,6 @@ static struct dcvs_core *msm_dcvs_get_core(int offset)
 	/* if the handle is still not set bug */
 	BUG_ON(core_list[offset].dcvs_core_id == -1);
 	return &core_list[offset];
-}
-
-void reset_num_cpu_freqs(void)
-{
-  num_cpu_freqs  = 0;
 }
 
 void msm_dcvs_register_cpu_freq(uint32_t freq, uint32_t voltage)

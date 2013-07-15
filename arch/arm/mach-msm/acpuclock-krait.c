@@ -42,6 +42,8 @@
 #ifdef CONFIG_SEC_DEBUG_DCVS_LOG
 #include <mach/sec_debug.h>
 #endif
+#include "krait-defines.h"
+
 /* MUX source selects. */
 #define PRI_SRC_SEL_SEC_SRC	0
 #define PRI_SRC_SEL_HFPLL	1
@@ -53,11 +55,6 @@ int boost_uv;
 int speed_bin;
 int pvs_bin;
 #endif
-
-extern void reset_num_cpu_freqs(void);
-
-#define MAX_VDD_SC    1400000 /* uV */
-#define MIN_VDD_SC     700000 /* uV */
 
 static DEFINE_MUTEX(driver_lock);
 static DEFINE_SPINLOCK(l2_lock);
@@ -491,11 +488,6 @@ out:
 	mutex_unlock(&l2_regulator_lock);
 }
 
-static int minus_vc;
-module_param_named(
-	mclk, minus_vc, int, S_IRUGO | S_IWUSR | S_IWGRP
-);
-
 /* Set the CPU's clock rate and adjust the L2 rate, voltage and BW requests. */
 static int acpuclk_krait_set_rate(int cpu, unsigned long rate,
 				  enum setrate_reason reason)
@@ -535,7 +527,7 @@ static int acpuclk_krait_set_rate(int cpu, unsigned long rate,
 	/* Calculate voltage requirements for the current CPU. */
 	vdd_data.vdd_mem  = calculate_vdd_mem(tgt);
 	vdd_data.vdd_dig  = calculate_vdd_dig(tgt);
-	vdd_data.vdd_core = calculate_vdd_core(tgt) + minus_vc;
+	vdd_data.vdd_core = calculate_vdd_core(tgt);
 	vdd_data.ua_core = tgt->ua_core;
 
 	/* Disable AVS before voltage switch */
@@ -650,9 +642,8 @@ static void __cpuinit hfpll_init(struct scalable *sc,
 		writel_relaxed(drv.hfpll_data->droop_val,
 			       sc->hfpll_base + drv.hfpll_data->droop_offset);
 
-	/* Set an initial rate and enable the PLL. */
+	/* Set an initial PLL rate. */
 	hfpll_set_rate(sc, tgt_s);
-	hfpll_enable(sc, false);
 }
 
 static int __cpuinit rpm_regulator_init(struct scalable *sc, enum vregs vreg,
@@ -823,7 +814,9 @@ static int __cpuinit init_clock_sources(struct scalable *sc,
 	regval &= ~(0x3 << 6);
 	set_l2_indirect_reg(sc->l2cpmr_iaddr, regval);
 
-	/* Switch to the target clock source. */
+	/* Enable and switch to the target clock source. */
+	if (tgt_s->src == HFPLL)
+		hfpll_enable(sc, false);
 	set_pri_clk_src(sc, tgt_s->pri_src_sel);
 	sc->cur_speed = tgt_s;
 
@@ -948,8 +941,8 @@ static void __init bus_init(const struct l2_level *l2_level)
 
 #ifdef CONFIG_CPU_VOLTAGE_TABLE
 
-#define HFPLL_MIN_VDD		 800000
-#define HFPLL_MAX_VDD		1350000
+#define HFPLL_MIN_VDD		 600000
+#define HFPLL_MAX_VDD		1450000
 
 ssize_t acpuclk_get_vdd_levels_str(char *buf) {
 
@@ -1007,10 +1000,10 @@ static void __init cpufreq_table_init(void)
 		for (i = 0; drv.acpu_freq_tbl[i].speed.khz != 0
 				&& freq_cnt < ARRAY_SIZE(*freq_table); i++) {
 			if (drv.acpu_freq_tbl[i].use_for_scaling) {
-#ifdef CONFIG_SEC_FACTORY 
+#if 0
 				// if factory_condition, set the core freq limit.
 				//QMCK
-				if (console_set_on_cmdline && drv.acpu_freq_tbl[i].speed.khz > 1000000) {
+				if (console_set_on_cmdline && drv.acpu_freq_tbl[i].speed.khz > 1242000) {
 					if(console_batt_stat == 1) {
 						continue;
 					}
@@ -1043,8 +1036,7 @@ static void __init cpufreq_table_init(void) {}
 static void __init dcvs_freq_init(void)
 {
 	int i;
-	reset_num_cpu_freqs();
-	
+
 	for (i = 0; drv.acpu_freq_tbl[i].speed.khz != 0; i++)
 		if (drv.acpu_freq_tbl[i].use_for_scaling)
 			msm_dcvs_register_cpu_freq(
@@ -1109,8 +1101,8 @@ static const int krait_needs_vmin(void)
 static void krait_apply_vmin(struct acpu_level *tbl)
 {
 	for (; tbl->speed.khz != 0; tbl++) {
-		if (tbl->vdd_core < MIN_VDD_SC)
-			tbl->vdd_core = MIN_VDD_SC;
+		if (tbl->vdd_core < 1150000)
+			tbl->vdd_core = 1150000;
 		tbl->avsdscr_setting = 0;
 	}
 }
